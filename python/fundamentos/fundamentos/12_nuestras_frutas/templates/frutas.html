@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado de Frutas</title>
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navegación */
+        .navbar {
+            background-color: #48bb78;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .navbar-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .navbar-nav a:hover {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #6b7280;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Catálogo de Frutas */
+        .fruit-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .fruit-card {
+            position: relative;
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            height: 200px;
+        }
+
+        .fruit-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fruit-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+            color: white;
+        }
+
+        .fruit-name {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .fruit-price {
+            color: #f59e0b;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        /* Botón de Pedido */
+        .btn-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .btn-order {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-order:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Sección ¿Por qué elegirnos? */
+        .why-us {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .why-us h2 {
+            font-size: 1.5rem;
+            color: #374151;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            border: 1px solid #f3f4f6;
+            border-radius: 10px;
+            padding: 25px 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #48bb78;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 0.825rem;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        /* Adaptabilidad Móvil */
+        @media (max-width: 850px) {
+            .fruit-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fruit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra de Navegación -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <i class="fa-solid fa-apple-whole"></i>
+            <span>Mercado de Frutas</span>
+        </div>
+        <ul class="navbar-nav">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Catálogo</a></li>
+        </ul>
+    </nav>
+
+    <!-- Encabezado / Hero -->
+    <header class="hero">
+        <h1>Nuestras Frutas</h1>
+        <p>Descubre nuestra variedad de frutas frescas disponibles</p>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container">
+
+        <!-- Grilla de Frutas -->
+        <div class="fruit-grid">
+            <div class="fruit-card">
+                <img src="manzana.png" alt="Manzana">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Manzana</div>
+                    <div class="fruit-price">$2.5</div>
+                </div>
+            </div>
+
+            <div class="fruit-card">
+                <img src="platano.png" alt="Plátano">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Plátano</div>
+                    <div class="fruit-price">$1.8</div>
+                </div>
+            </div>
+
+            <div class="fruit-card">
+                <img src="naranja.png" alt="Naranja">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Naranja</div>
+                    <div class="fruit-price">$3.0</div>
+                </div>
+            </div>
+
+            <div class="fruit-card">
+                <img src="fresa.png" alt="Fresa">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Fresa</div>
+                    <div class="fruit-price">$4.5</div>
+                </div>
+            </div>
+
+            <div class="fruit-card">
+                <img src="uva.png" alt="Uva">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Uva</div>
+                    <div class="fruit-price">$3.8</div>
+                </div>
+            </div>
+
+            <div class="fruit-card">
+                <img src="pina.png" alt="Piña">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Piña</div>
+                    <div class="fruit-price">$5.0</div>
+                </div>
+            </div>
+
+            <div class="fruit-card">
+                <img src="sandia.png" alt="Sandía">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Sandía</div>
+                    <div class="fruit-price">$4.2</div>
+                </div>
+            </div>
+
+            <div class="fruit-card">
+                <img src="mango.png" alt="Mango">
+                <div class="fruit-card-overlay">
+                    <div class="fruit-name">Mango</div>
+                    <div class="fruit-price">$3.5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón de Pedido -->
+        <div class="btn-container">
+            <button class="btn-order">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Hacer un pedido
+            </button>
+        </div>
+
+        <!-- Sección de Beneficios -->
+        <section class="why-us">
+            <h2>¿Por qué elegirnos?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-leaf feature-icon"></i>
+                    <h3>100% Orgánico</h3>
+                    <p>Todas nuestras frutas son cultivadas sin pesticidas ni químicos dañinos.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-truck feature-icon"></i>
+                    <h3>Entrega Rápida</h3>
+                    <p>Entregamos en menos de 48 horas para asegurar la máxima frescura.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fa-solid fa-award feature-icon"></i>
+                    <h3>Calidad Garantizada</h3>
+                    <p>Si no estás satisfecho con nuestros productos, te devolvemos tu dinero.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
