@@ -107,8 +107,16 @@ def catalogo():
 # Procesar compra
 # ==========================================
 
-@app.route("/checkout", methods=["POST"])
+from flask import Flask, render_template, request
+
+@app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
+    if request.method == 'POST':
+        # Procesar datos enviados desde el formulario (si aplica)
+        return render_template('checkout.html')
+    
+    # Respuesta para cuando se accede directamente por URL (GET)
+    return render_template('checkout.html')
 
     # ----------------------------
     # Información del cliente
